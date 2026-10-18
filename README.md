@@ -10,8 +10,8 @@ All data is stored in-memory for fast demonstration. The matching and allocation
 
 ## Presentation & Demo
 
-- **Slide deck (PDF):** [BLACKBOX Presentation](docs/SIH-PPT.pdf)
-- **Demo Video:** [Watch Demo Video](docs/demo.mp4)
+- **Slide deck (PDF):** [Presentation](docs/SIH-PPT.pdf)
+- **Demo Video:** [Demo Video](docs/demo.mp4)
 
 ## Features
 
