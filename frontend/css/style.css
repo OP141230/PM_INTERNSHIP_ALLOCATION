@@ -1,0 +1,715 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Core palette – NIC / Digital India */
+    --gov-orange:   #FF671F;   /* Saffron */
+    --gov-navy:     #003580;   /* Deep government blue */
+    --gov-dark:     #002060;   /* Header/sidebar dark */
+    --gov-green:    #138808;   /* Tricolour green */
+    --gov-white:    #FFFFFF;
+    --gov-off-white:#F5F7FA;
+    --gov-light:    #EAF0FB;
+    --gov-border:   #C8D4E8;
+    --gov-text:     #1A1A2E;
+    --gov-muted:    #5A6480;
+    --gov-card:     #FFFFFF;
+    --gov-accent:   #003580;
+    --gov-highlight:#E8F0FE;
+    --gov-success:  #138808;
+    --gov-warning:  #E65100;
+    --gov-table-hd: #003580;
+    --gov-table-alt:#F0F4FF;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.10);
+    --shadow-md: 0 2px 10px rgba(0,0,0,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Noto Sans', Arial, sans-serif;
+    background: var(--gov-off-white);
+    color: var(--gov-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 14px;
+}
+
+.gov-header {
+    background: var(--gov-dark);
+    color: var(--gov-white);
+    width: 100%;
+    border-bottom: 4px solid var(--gov-orange);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    box-shadow: var(--shadow-md);
+}
+
+.gov-header-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 28px;
+    background: var(--gov-dark);
+}
+
+img.emblem {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: brightness(1.1);
+}
+
+/* PM Internship logo – right image */
+img.pm_intern {
+    height: 52px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: var(--gov-white);
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+.gov-title-block { flex: 1; }
+
+.gov-ministry {
+    font-size: 11px;
+    font-weight: 400;
+    color: #b0c4e8;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.gov-portal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gov-white);
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+}
+
+.gov-portal-sub {
+    font-size: 12px;
+    color: #8daed4;
+}
+
+/* Tricolour stripe */
+.gov-tricolour {
+    height: 5px;
+    background: linear-gradient(to right,
+        var(--gov-orange) 33.33%,
+        var(--gov-white) 33.33% 66.66%,
+        var(--gov-green) 66.66%);
+}
+
+/* ── Layout Shell ─────────────────────────────────────────── */
+.app-shell {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.sidebar {
+    width: 240px;
+    background: var(--gov-navy);
+    border-right: 1px solid #1a4a9a;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 73px;
+    height: calc(100vh - 73px);
+    overflow-y: auto;
+}
+
+nav { display: flex; flex-direction: column; gap: 2px; flex: 1; padding: 0 10px; }
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    color: #b0c4e8;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    font-size: 13px;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--gov-white);
+}
+
+.nav-link.active {
+    background: rgba(255,255,255,0.13);
+    color: var(--gov-white);
+    border-left-color: var(--gov-orange);
+    font-weight: 600;
+}
+
+.nav-link i { width: 16px; height: 16px; flex-shrink: 0; }
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 16px 10px 4px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn-primary, .btn-outline {
+    font-family: 'Noto Sans', Arial, sans-serif;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.btn-primary {
+    background: var(--gov-navy);
+    color: var(--gov-white);
+    border: 1px solid var(--gov-navy);
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background: #004499;
+    border-color: #004499;
+}
+
+.btn-outline {
+    background: var(--gov-white);
+    border: 1px solid var(--gov-navy);
+    color: var(--gov-navy);
+    width: auto;
+}
+
+.btn-outline:hover {
+    background: var(--gov-highlight);
+}
+
+/* ── Main Content Area ────────────────────────────────────── */
+.content {
+    flex: 1;
+    padding: 24px 28px;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--gov-border);
+}
+
+.topbar h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gov-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.topbar-actions { display: flex; gap: 10px; }
+
+/* ── Views ────────────────────────────────────────────────── */
+.view { display: none; animation: fadeIn 0.2s ease; }
+.view.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Stat Cards ───────────────────────────────────────────── */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: var(--gov-card);
+    border: 1px solid var(--gov-border);
+    border-top: 3px solid var(--gov-navy);
+    border-radius: 4px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--gov-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gov-navy);
+}
+
+/* ── Generic Card ─────────────────────────────────────────── */
+.card {
+    background: var(--gov-card);
+    border: 1px solid var(--gov-border);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gov-border);
+}
+
+.card-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gov-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.card-header div { display: flex; gap: 10px; }
+.card-header .btn-primary,
+.card-header .btn-outline { width: auto; }
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 20px;
+}
+
+.charts-grid .card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gov-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 16px;
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+.table-controls { margin-bottom: 14px; }
+
+.table-controls input {
+    width: 100%;
+    padding: 9px 14px;
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-radius: 3px;
+    color: var(--gov-text);
+    font-family: 'Noto Sans', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.table-controls input:focus {
+    outline: none;
+    border-color: var(--gov-navy);
+    box-shadow: 0 0 0 2px rgba(0,53,128,0.12);
+}
+
+.table-wrapper { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+thead tr {
+    background: var(--gov-table-hd);
+}
+
+th {
+    padding: 10px 14px;
+    text-align: left;
+    color: var(--gov-white);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid #1a4a9a;
+    white-space: nowrap;
+}
+
+td {
+    padding: 10px 14px;
+    border: 1px solid var(--gov-border);
+    color: var(--gov-text);
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: var(--gov-table-alt); }
+tbody tr:hover { background: #dce8ff; }
+
+/* ── Internship Cards ─────────────────────────────────────── */
+.internships-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.intern-card {
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-left: 4px solid var(--gov-navy);
+    border-radius: 4px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+}
+
+.intern-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.intern-company {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gov-dark);
+}
+
+.intern-role {
+    color: var(--gov-muted);
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+/* ── Progress Bar ─────────────────────────────────────────── */
+.progress-bar {
+    height: 8px;
+    background: #d0dce8;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gov-navy), #1a6ab5);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+.progress-text { font-size: 11px; color: var(--gov-muted); }
+
+/* ── Matching Section ─────────────────────────────────────── */
+.match-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.match-controls select {
+    flex: 1;
+    padding: 9px 12px;
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-radius: 3px;
+    color: var(--gov-text);
+    font-family: 'Noto Sans', Arial, sans-serif;
+    font-size: 13px;
+}
+
+.match-controls .btn-primary { width: auto; }
+
+.match-results { display: flex; flex-direction: column; gap: 14px; }
+
+.match-card {
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-left: 4px solid var(--gov-navy);
+    border-radius: 4px;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.match-info h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gov-dark);
+    margin-bottom: 3px;
+}
+
+.match-meta { color: var(--gov-muted); font-size: 12px; margin-bottom: 8px; }
+
+.match-reasons { font-size: 12px; color: var(--gov-text); }
+.match-reasons span {
+    display: block;
+    margin-bottom: 3px;
+    padding-left: 2px;
+}
+
+.match-score-box {
+    text-align: center;
+    background: var(--gov-highlight);
+    border: 1px solid var(--gov-border);
+    border-radius: 4px;
+    padding: 12px 20px;
+    min-width: 80px;
+}
+
+.score {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gov-navy);
+}
+
+.score-label { font-size: 10px; color: var(--gov-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+.match-actions { display: flex; gap: 8px; margin-top: 10px; }
+.match-actions button { padding: 6px 12px; font-size: 11px; width: auto; }
+
+/* ── Allocation Stats ─────────────────────────────────────── */
+.alloc-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.alloc-stat {
+    background: var(--gov-highlight);
+    border: 1px solid var(--gov-border);
+    padding: 14px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alloc-stat .val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gov-navy);
+}
+
+.alloc-stat .lbl { font-size: 11px; color: var(--gov-muted); text-transform: uppercase; margin-top: 2px; }
+
+/* ── Badges ───────────────────────────────────────────────── */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.badge-success {
+    background: #e6f4ea;
+    color: var(--gov-success);
+    border: 1px solid #a8d5ae;
+}
+
+.badge-warning {
+    background: #fff3e0;
+    color: var(--gov-warning);
+    border: 1px solid #ffcc80;
+}
+
+/* ── Modal ────────────────────────────────────────────────── */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 32, 96, 0.55);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-top: 4px solid var(--gov-navy);
+    border-radius: 4px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gov-border);
+    background: var(--gov-highlight);
+}
+
+.modal-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gov-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-body input,
+.modal-body select {
+    padding: 9px 12px;
+    background: var(--gov-white);
+    border: 1px solid var(--gov-border);
+    border-radius: 3px;
+    color: var(--gov-text);
+    font-family: 'Noto Sans', Arial, sans-serif;
+    font-size: 13px;
+    width: 100%;
+}
+
+.modal-body input:focus,
+.modal-body select:focus {
+    outline: none;
+    border-color: var(--gov-navy);
+    box-shadow: 0 0 0 2px rgba(0,53,128,0.12);
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--gov-muted);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 2px 6px;
+}
+
+.close-modal:hover { color: var(--gov-dark); }
+
+/* ── Simulation Modal ─────────────────────────────────────── */
+.sim-content { padding: 32px 28px; }
+
+.sim-content h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gov-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.sim-steps { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+
+.sim-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gov-muted);
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 3px;
+    border: 1px solid var(--gov-border);
+    background: var(--gov-off-white);
+}
+
+.sim-step.active {
+    color: var(--gov-navy);
+    border-color: var(--gov-navy);
+    background: var(--gov-highlight);
+    font-weight: 600;
+}
+
+.sim-step.done {
+    color: var(--gov-success);
+    border-color: #a8d5ae;
+    background: #e6f4ea;
+}
+
+.sim-step i { width: 16px; height: 16px; }
+
+/* ── Spinner ──────────────────────────────────────────────── */
+.step-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+    color: var(--gov-navy);
+}
+
+.step-icon .spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(0, 53, 128, 0.2);
+    border-top-color: var(--gov-navy);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.sim-step.done .step-icon .spinner { display: none; }
+
+.sim-step.done .step-icon::after {
+    content: '✓';
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gov-success);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+    .app-shell { flex-direction: column; }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+    }
+
+    .logo { margin-bottom: 0; margin-right: 16px; padding-bottom: 0; border-bottom: none; }
+    nav { flex-direction: row; padding: 0; gap: 4px; }
+    .sidebar-footer { display: none; }
+    .content { padding: 16px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .charts-grid { grid-template-columns: 1fr; }
+    .match-card { grid-template-columns: 1fr; }
+    .alloc-stats { grid-template-columns: repeat(3, 1fr); }
+}

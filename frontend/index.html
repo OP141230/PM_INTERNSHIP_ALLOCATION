@@ -1,0 +1,197 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PM Internship Allocation System – Government of India</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+            <script src="https://unpkg.com/lucide@latest"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <link rel="stylesheet" href="css/style.css">
+        </head>
+        <body>
+
+            <!-- Government Header Banner -->
+            <header class="gov-header">
+                <div class="gov-header-top">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngmart.com%2Ffiles%2F10%2FCoat-of-Arms-of-India-PNG-Picture.png&f=1&nofb=1&ipt=bca273091278498dcbc1987e0596a806f69be92265ddf8089923e8b42ea723af" class="emblem" alt="Emblem of India">
+                    <div class="gov-title-block">
+                        <div class="gov-ministry">Ministry of Skill Development &amp; Entrepreneurship | Government of India</div>
+                        <div class="gov-portal-title">PM Internship Scheme – AI Allocation Portal</div>
+                    </div>
+                    <img src="https://pminternship.mca.gov.in/assets/images/img/pm_internship_logo_eng.svg" class="pm_intern" alt="PM Internship Logo">
+                </div>
+                <div class="gov-tricolour"></div>
+            </header>
+
+            <div class="app-shell">
+
+            <aside class="sidebar">
+                <nav>
+                    <a href="#" class="nav-link active" data-view="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                    <a href="#" class="nav-link" data-view="candidates"><i data-lucide="users"></i> Candidates</a>
+                    <a href="#" class="nav-link" data-view="internships"><i data-lucide="briefcase"></i> Internships</a>
+                    <a href="#" class="nav-link" data-view="matching"><i data-lucide="target"></i> AI Matching</a>
+                    <a href="#" class="nav-link" data-view="allocations"><i data-lucide="check-circle"></i> Allocations</a>
+                    <a href="#" class="nav-link" data-view="analytics"><i data-lucide="bar-chart-3"></i> Analytics</a>
+                </nav>
+                <div class="sidebar-footer">
+                    <button id="demoBtn" class="btn-primary"><i data-lucide="play"></i> Run AI Simulation</button>
+                </div>
+            </aside>
+
+            <main class="content">
+                <header class="topbar">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <div class="topbar-actions">
+                        <button id="resetBtn" class="btn-outline"><i data-lucide="refresh-cw"></i> Reset Data</button>
+                    </div>
+                </header>
+
+                <section id="view-dashboard" class="view active">
+                    <div class="stats-grid" id="statsGrid"></div>
+                    <div class="charts-grid">
+                        <div class="card"><h3>Sector Distribution</h3><canvas id="chartSector"></canvas></div>
+                        <div class="card"><h3>Allocation Status</h3><canvas id="chartStatus"></canvas></div>
+                        <div class="card"><h3>Rural vs Urban</h3><canvas id="chartRural"></canvas></div>
+                        <div class="card"><h3>Match Score Distribution</h3><canvas id="chartScores"></canvas></div>
+                    </div>
+                </section>
+
+                <section id="view-candidates" class="view">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Student Portal & Candidate Pool</h3>
+                            <button class="btn-primary" onclick="openModal('applyModal')"><i data-lucide="plus"></i> Apply as Student</button>
+                        </div>
+                        <div class="table-controls">
+                            <input type="text" id="candSearch" placeholder="Search candidates...">
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="candidatesTable">
+                                
+                                <thead><tr><th>ID</th><th>Name</th><th>Qualification</th><th>Skills</th><th>Preferred Location</th><th>Origin</th><th>State</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="view-internships" class="view">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Employer Portal & Openings</h3>
+                            <button class="btn-primary" onclick="openModal('postModal')"><i data-lucide="plus"></i> Post Internship</button>
+                        </div>
+                        <div class="internships-grid" id="internshipsGrid"></div>
+                    </div>
+                </section>
+
+                <section id="view-matching" class="view">
+                    <div class="card">
+                        <h3>AI Candidate Matching</h3>
+                        <div class="match-controls">
+                            <select id="matchCandSelect"></select>
+                            <button class="btn-primary" id="runMatchBtn">Find Best Matches</button>
+                        </div>
+                        <div id="matchResults" class="match-results"></div>
+                    </div>
+                </section>
+
+                <section id="view-allocations" class="view">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Allocation Engine</h3>
+                            <div>
+                                <button class="btn-primary" id="runAllocBtn"><i data-lucide="zap"></i> Run AI Allocation</button>
+                                <button class="btn-outline" id="exportCsvBtn"><i data-lucide="download"></i> Export CSV</button>
+                            </div>
+                        </div>
+                        <div class="alloc-stats" id="allocStats"></div>
+                        <div class="table-wrapper">
+                            <table id="allocTable">
+                                <thead><tr><th>Candidate</th><th>Company</th><th>Role</th><th>Location</th><th>Score</th><th>Status</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="view-analytics" class="view">
+                    <div class="charts-grid">
+                        <div class="card"><h3>Capacity Utilization</h3><canvas id="chartCapacity"></canvas></div>
+                        <div class="card"><h3>State Allocations</h3><canvas id="chartState"></canvas></div>
+                    </div>
+                </section>
+            </main>
+
+            </div><!-- /.app-shell -->
+
+            <div id="breakdownModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header"><h3>Score Breakdown</h3><button class="close-modal" onclick="closeModal('breakdownModal')"><i data-lucide="x"></i></button></div>
+                    <div id="breakdownBody" class="modal-body"></div>
+                </div>
+            </div>
+            <div id="applyModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header"><h3>Student Application (CV Format)</h3><button class="close-modal" onclick="closeModal('applyModal')"><i data-lucide="x"></i></button></div>
+                    <div class="modal-body">
+                        <input type="text" id="app_name" placeholder="Full Name">
+                        <input type="number" id="app_cgpa" placeholder="CGPA (e.g., 8.5)" step="0.1" min="0" max="10">
+                        <select id="app_qual"><option>B.Tech</option><option>BCA</option><option>B.Sc</option><option>MBA</option></select>
+                        <input type="text" id="app_skills" placeholder="Skills (comma separated)">
+                        
+                        
+                        <select id="app_state">
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Gujarat">Gujarat</option>
+                        </select>
+
+                        <select id="app_sector"><option>IT</option><option>Healthcare</option><option>Finance</option><option>Manufacturing</option></select>
+                        <select id="app_role"><option>Data Analyst</option><option>Software Developer</option><option>Project Manager</option></select>
+                        
+                        <input type="text" id="app_curr_loc" placeholder="Your Current City/Village">
+                        <select id="app_loc_type">
+                            <option value="Urban">Location Type: Urban</option>
+                            <option value="Rural">Location Type: Rural</option>
+                        </select>
+                        <input type="text" id="app_pref_loc" placeholder="Preferred Internship Location (e.g., Mumbai)">
+                        
+                        <button class="btn-primary" onclick="submitApplication()">Submit Application</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="postModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header"><h3>Post Internship Opening</h3><button class="close-modal" onclick="closeModal('postModal')"><i data-lucide="x"></i></button></div>
+                    <div class="modal-body">
+                        <input type="text" id="post_company" placeholder="Company Name">
+                        <select id="post_role"><option>Data Analyst</option><option>Software Developer</option><option>Project Manager</option></select>
+                        <input type="text" id="post_loc" placeholder="Location">
+                        <select id="post_sector"><option>IT</option><option>Healthcare</option><option>Finance</option><option>Manufacturing</option></select>
+                        <input type="text" id="post_skills" placeholder="Required Skills (comma separated)">
+                        <input type="number" id="post_cap" placeholder="Capacity">
+                        <button class="btn-primary" onclick="submitInternship()">Post Opening</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="simModal" class="modal">
+                <div class="modal-content sim-content">
+                    <h3>AI Simulation Running...</h3>
+                    <div id="simSteps" class="sim-steps"></div>
+                </div>
+            </div>
+
+            <script src="js/app.js"></script>
+        </body>
+        </html>
