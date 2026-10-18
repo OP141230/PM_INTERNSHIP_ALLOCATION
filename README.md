@@ -8,6 +8,11 @@ The platform connects students and employers. Students apply with their profile,
 
 All data is stored in-memory for fast demonstration. The matching and allocation logic is decoupled from storage, so it can be connected to a real database without changing the core engine.
 
+## Presentation & Demo
+
+- **Slide deck (PDF):** [BLACKBOX Presentation](docs/SIH-PPT.pdf)
+- **Demo Video:** [Watch Demo Video](docs/demo.mp4)
+
 ## Features
 
 ### Dashboard
